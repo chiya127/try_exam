@@ -10,4 +10,9 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :question , only: [] do
+    get :edit
+    post :renewal
+  end
+
 end
