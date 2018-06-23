@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<%#= @questions.each do |quetion| -%>
-  <br><%= @question.title %>
-  <% @question.answers.each do |answer| -%>
+<% @questions.each do |question| -%>
+  <br><%= question.detail.html_safe %>
+  <% question.answers.each do |answer| -%>
     <p><%= answer.title %></p>
   <% end -%>
-<%#= end -%>
+<% end -%>
