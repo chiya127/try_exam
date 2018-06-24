@@ -1,8 +1,62 @@
+<style>
+.hidden_box {
+    margin: 2em 0;/*前後の余白*/
+    padding: 0;
+}
+
+/*ボタン装飾*/
+.hidden_box label {
+    padding: 15px;
+    font-weight: bold;
+    border: solid 2px black;
+    cursor :pointer;
+}
+
+/*ボタンホバー時*/
+.hidden_box label:hover {
+    background: #efefef;
+}
+
+/*チェックは見えなくする*/
+.hidden_box input {
+    display: none;
+}
+
+/*中身を非表示にしておく*/
+.hidden_box .hidden_show {
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: 0.8s;
+}
+
+/*クリックで中身表示*/
+.hidden_box input:checked ~ .hidden_show {
+    padding: 10px 0;
+    height: auto;
+    opacity: 1;
+}
+</style>
+
 <p id="notice"><%= notice %></p>
 
-<% @questions.each_with_index do |question, index| -%>
-  <h3>問.<%= index + 1 %> <%= raw question.detail %></h3>
-  <% question.answers.each do |answer| -%>
-    <p><%= raw answer.title %></p>
+<% @questions.each.with_index(1) do |question, index| -%>
+  <h1>問<%= index %></h1>
+  <h2><%= simple_format(h(question.detail)) %></h2>
+  <% question.answers.each.with_index(1) do |answer, answer_index| -%>
+    <p><%= answer_index -%>. <%= raw answer.title %></p>
   <% end -%>
+
+  <div class="hidden_box">
+    <label for="label<%= index -%>">解答と解説</label>
+    <input type="checkbox" id="label<%= index -%>"/>
+    <div class="hidden_show">
+      <% question.answers.map(&:correct_flag).each.with_index(1) do |flag, index| -%>
+        <%= index if flag -%>
+      <% end -%>
+    </div>
+  </div>
+
+  <hr>
 <% end -%>
