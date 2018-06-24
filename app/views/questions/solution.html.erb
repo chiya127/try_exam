@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<% @questions.each do |question| -%>
-  <br><%= question.detail.html_safe %>
+<% @questions.each_with_index do |question, index| -%>
+  <h3>問.<%= index + 1 %> <%= raw question.detail %></h3>
   <% question.answers.each do |answer| -%>
-    <p><%= answer.title %></p>
+    <p><%= raw answer.title %></p>
   <% end -%>
 <% end -%>
