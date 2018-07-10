@@ -27,6 +27,8 @@ class QuestionsController < ApplicationController
     CCNA_OPTIONS
   ]
 
+  PER_PAGE = 10
+
   def solution
   end
 
@@ -49,7 +51,7 @@ class QuestionsController < ApplicationController
     if params[:random]
       @questions = Question.where(genre_id: params[:genre_id]).includes(:answers).limit(limit).order("RANDOM()")
     else
-      @questions = Question.where(genre_id: params[:genre_id]).includes(:answers).paginate(page: params[:page], per_page: 10, total_entries: limit)
+      @questions = Question.where(genre_id: params[:genre_id]).includes(:answers).paginate(page: params[:page], per_page: PER_PAGE, total_entries: limit)
     end
   end
 

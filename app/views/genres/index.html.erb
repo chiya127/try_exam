@@ -12,8 +12,8 @@
   <tbody>
     <tr>
       <% @genres.each do |genre| %>
-        <%= link_to genre.name, genre_question_solution_path(genre_id: genre.id, question_id: genre.questions.first.id), data: { confirm: 'Start solution?' } %><br>
-        <%= link_to genre.name + '（ランダム）', genre_question_solution_path(genre_id: genre.id, question_id: genre.questions.first.id, random: true), data: { confirm: 'Start solution?' } %><br><br>
+        <%= link_to genre.name, genre_question_solution_path(genre_id: genre.id, question_id: genre.questions.first.id) %><br>
+        <%= link_to genre.name + '（ランダム）', genre_question_solution_path(genre_id: genre.id, question_id: genre.questions.first.id, random: true) %><br><br>
       <% end %>
     </tr>
   </tbody>

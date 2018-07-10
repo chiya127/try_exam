@@ -42,7 +42,7 @@
 <p id="notice"><%= notice %></p>
 
 <% @questions.each.with_index(1) do |question, index| -%>
-  <h1>問<%= index %></h1>
+  <h1>問<%= params[:page] ? (10 * params[:page].to_i + index - 10) : index %></h1>
   <h2><%= simple_format(raw(question.detail)) %></h2>
   <% question.answers.each.with_index(1) do |answer, answer_index| -%>
     <p><%= answer_index -%>. <%= raw answer.title %></p>
