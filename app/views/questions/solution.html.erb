@@ -43,7 +43,7 @@
 
 <% @questions.each.with_index(1) do |question, index| -%>
   <h1>問<%= index %></h1>
-  <h2><%= simple_format(h(question.detail)) %></h2>
+  <h2><%= simple_format(raw(question.detail)) %></h2>
   <% question.answers.each.with_index(1) do |answer, answer_index| -%>
     <p><%= answer_index -%>. <%= raw answer.title %></p>
   <% end -%>
