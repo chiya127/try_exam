@@ -28,7 +28,6 @@ class QuestionsController < ApplicationController
   ]
 
   def solution
-    #@questions = @questions.paginate(page: params[:page], per_page: 10, total_entries: limit)
   end
 
   def result
@@ -47,7 +46,11 @@ class QuestionsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_questions
     limit = params[:limit] || 50
-    @questions = Question.where(genre_id: params[:genre_id]).includes(:answers).limit(limit).order("RANDOM()")
+    if params[:random]
+      @questions = Question.where(genre_id: params[:genre_id]).includes(:answers).limit(limit).order("RANDOM()")
+    else
+      @questions = Question.where(genre_id: params[:genre_id]).includes(:answers).paginate(page: params[:page], per_page: 10, total_entries: limit)
+    end
   end
 
   def get_questions!

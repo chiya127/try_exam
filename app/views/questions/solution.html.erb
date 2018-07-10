@@ -60,5 +60,6 @@
 
   <hr>
 <% end -%>
+<%= will_paginate @questions unless params[:random] %>
+<hr>
 <div><%= link_to 'top画面へ', root_path %></div>
-<%#= will_paginate @questions %>
